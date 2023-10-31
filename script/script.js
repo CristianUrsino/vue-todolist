@@ -26,8 +26,12 @@ const { createApp } = Vue;
     },
     methods:{
                 
-        removeTask(i){
-            this.tasks.splice(i,1);
+        removeTask(id){
+            for(let i=0;i<this.tasks.length;i++){
+                if(id === this.tasks[i].id) {
+                    this.tasks.splice(i,1);
+                }
+            }
         },
         addTask(){
             this.lastId++;
@@ -39,6 +43,13 @@ const { createApp } = Vue;
             this.tasks.unshift(newTask);
             this.todoText = '';
         },
+        done(id){
+            for(let i=0;i<this.tasks.length;i++){
+                if(id === this.tasks[i].id) {
+                    this.tasks[i].done = !this.tasks[i].done
+                }
+            }
+        }
     },
     amounted(){
     }
